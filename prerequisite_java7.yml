@@ -1,0 +1,32 @@
+---
+- name: java installation
+  hosts: localhost
+  become: yes
+  vars:
+    ansible_become_pass: suntec123
+  tasks:
+  - name: Downloading Java
+    get_url:
+      url: http://192.168.66.129:8081/repository/softwares/java/jdk1.7.0_79/0/jdk1.7.0_79-0.zip
+      dest: /tmp
+  - name: Java7 Extraction
+    unarchive:
+      src: /tmp/jdk1.7.0_79-0.zip
+      dest: /opt
+  - name: Downloading jboss
+    get_url:
+      url: http://192.168.66.129:8081/repository/softwares/jboss/jboss-eap-6.4/.0/jboss-eap-6.4-.0.zip
+      dest: /tmp
+  - name: Jboss Extraction
+    unarchive:
+      src: /tmp/jboss-eap-6.4-.0.zip
+      dest: /opt
+  - name: Exporting Env Variables
+    shell: 
+      export JAVA_HOME=/opt/jdk1.7.0_79
+      export PATH=/opt/jdk1.7.0_79/bin
+         
+
+
+
+

@@ -1,0 +1,14 @@
+---
+- name: Install Jenkins software
+  hosts: localhost
+  gather_facts: true
+  become: yes
+  vars:
+    ansible_become_pass: suntec123
+  tasks:
+  - name: Dowloading jekins
+    get_url:
+      url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo 
+      dest: /var/lib
+  #- name: Importing rpm key
+   # shell: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key 
